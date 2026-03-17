@@ -234,23 +234,21 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_cmbMesActionPerformed
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
+        
+        
+        if(JOptionPane.showConfirmDialog(rootPane, "¿Desea realmente finalizar el sorteo?", 
+         "Finalizacion sorteo", 
+         JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION){
         txtCantGanadores.setText("");
         cmbMes.setSelectedIndex(0);
         
-        
-        //opcion1
-//        DefaultTableModel modelo = (DefaultTableModel)tblGanadores.getModel();
-//        
-//        for(int i = modelo.getRowCount() - 1; i>=0; i-- ){
-//            modelo.removeRow(i);
-//        }
-
-        //opcion2
+        //Limpiar filas
         DefaultTableModel modelo = (DefaultTableModel)tblGanadores.getModel();
         modelo.setRowCount(0);
         
         
         contSorteos = 1;
+        }
     }//GEN-LAST:event_btnLimpiarActionPerformed
 
     private void txtCantGanadoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCantGanadoresActionPerformed
