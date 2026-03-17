@@ -4,6 +4,9 @@
  */
 package igu;
 
+import java.util.Random;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Usuario
@@ -26,12 +29,12 @@ public class Principal extends javax.swing.JFrame {
         cmbMes = new javax.swing.JComboBox<>();
         jLabel5 = new javax.swing.JLabel();
         txtCantGanadores = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnLimpiar = new javax.swing.JButton();
+        btnSortear = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblGanadores = new javax.swing.JTable();
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -61,19 +64,19 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
-        jButton1.setText("Limpiar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnLimpiar.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        btnLimpiar.setText("Limpiar");
+        btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnLimpiarActionPerformed(evt);
             }
         });
 
-        jButton2.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
-        jButton2.setText("Sortear");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnSortear.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        btnSortear.setText("Sortear");
+        btnSortear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnSortearActionPerformed(evt);
             }
         });
 
@@ -96,12 +99,12 @@ public class Principal extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(246, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addComponent(btnLimpiar)
                 .addGap(159, 159, 159))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addGap(82, 82, 82)
-                    .addComponent(jButton2)
+                    .addComponent(btnSortear)
                     .addContainerGap(326, Short.MAX_VALUE)))
         );
         jPanel1Layout.setVerticalGroup(
@@ -118,19 +121,19 @@ public class Principal extends javax.swing.JFrame {
                     .addComponent(txtCantGanadores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
                 .addGap(56, 56, 56)
-                .addComponent(jButton1)
+                .addComponent(btnLimpiar)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addGap(227, 227, 227)
-                    .addComponent(jButton2)
+                    .addComponent(btnSortear)
                     .addContainerGap(227, Short.MAX_VALUE)))
         );
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel6.setText("Ganadores");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblGanadores.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null},
                 {null, null},
@@ -149,19 +152,20 @@ public class Principal extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tblGanadores);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 472, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(189, 189, 189)
-                        .addComponent(jLabel6)))
+                        .addGap(195, 195, 195)
+                        .addComponent(jLabel6))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 472, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(93, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -231,24 +235,65 @@ public class Principal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_cmbMesActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnLimpiarActionPerformed
 
     private void txtCantGanadoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCantGanadoresActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCantGanadoresActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    private void btnSortearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSortearActionPerformed
+        String mes;
+        String max;
+        
+        //rango de valores
+        mes = (String)cmbMes.getSelectedItem();
+        
+        String min = "01";
+        
+        if(mes.equals("02")){
+               max = "28";
+        }
+        else{
+            if(mes.equals("11") || mes.equals("06") || mes.equals("04") || mes.equals("09") ){
+                max = "30";
+            }else{
+                max = "31";
+            }
+        } 
+        
+        
+        //sortear random
+        Random numRandom = new Random();
+        
+        int minimo = Integer.parseInt(min);
+        int maximo= Integer.parseInt(max);
+        
+        int randomDia = numRandom.nextInt(maximo - minimo + 1) + 1;
+        int randomTicket = numRandom.nextInt(9999 - 0001 + 1);
+        
+        String numeroSorteado = randomDia + mes + randomTicket;
+        
+        
+        //Controlar que no haya salido antes el número
+        
+        DefaultTableModel model = (DefaultTableModel) tblGanadores.getModel();
+        Object[] object = {1, numeroSorteado};
+        model.addRow(object);
+        
+        
+        //Agregar el ganador a la tabla
+        
+        
+    }//GEN-LAST:event_btnSortearActionPerformed
 
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnLimpiar;
+    private javax.swing.JButton btnSortear;
     private javax.swing.JComboBox<String> cmbMes;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -259,7 +304,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tblGanadores;
     private javax.swing.JTextField txtCantGanadores;
     // End of variables declaration//GEN-END:variables
 }
