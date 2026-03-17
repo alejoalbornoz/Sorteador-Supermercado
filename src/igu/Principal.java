@@ -5,6 +5,7 @@
 package igu;
 
 import java.util.Random;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -12,7 +13,7 @@ import javax.swing.table.DefaultTableModel;
  * @author Usuario
  */
 public class Principal extends javax.swing.JFrame {
-
+    int contSorteos = 1;
    
     public Principal() {
         initComponents();
@@ -135,10 +136,7 @@ public class Principal extends javax.swing.JFrame {
 
         tblGanadores.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+
             },
             new String [] {
                 "Posicion", "Número"
@@ -244,51 +242,98 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_txtCantGanadoresActionPerformed
 
     private void btnSortearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSortearActionPerformed
-        String mes;
-        String max;
         
-        //rango de valores
-        mes = (String)cmbMes.getSelectedItem();
-        
-        String min = "01";
-        
-        if(mes.equals("02")){
-               max = "28";
-        }
-        else{
-            if(mes.equals("11") || mes.equals("06") || mes.equals("04") || mes.equals("09") ){
-                max = "30";
-            }else{
-                max = "31";
+        if(!txtCantGanadores.getText().equals("")){
+            int cantGan = Integer.parseInt(txtCantGanadores.getText());
+            if(contSorteos <= cantGan){
+
+            String mes;
+            String max;
+
+            //rango de valores
+            mes = (String)cmbMes.getSelectedItem();
+
+            String min = "01";
+
+            if(mes.equals("02")){
+                   max = "28";
             }
-        } 
+            else{
+                if(mes.equals("11") || mes.equals("06") || mes.equals("04") || mes.equals("09") ){
+                    max = "30";
+                }else{
+                    max = "31";
+                }
+            } 
+
+
+            //sortear random
+            Random numRandom = new Random();
+
+            int minimo = Integer.parseInt(min);
+            int maximo= Integer.parseInt(max);
+
+            int randomDia = numRandom.nextInt(maximo - minimo + 1) + 1;
+            int randomTicket = numRandom.nextInt(9999 - 0001 + 1);
+
+            String numeroSorteado = agregarCeros(randomDia, mes, randomTicket);
+
+
+            //Controlar que no haya salido antes el número
+
+            DefaultTableModel model = (DefaultTableModel) tblGanadores.getModel();
+            Object[] object = {contSorteos, numeroSorteado};
+            model.addRow(object);
+
+
+            //Agregar el ganador a la tabla
+            contSorteos++;
+            }
+        else{
+            JOptionPane.showMessageDialog(rootPane, "Ya se alcanzo la cantidad de ganadores");
+        }
         
-        
-        //sortear random
-        Random numRandom = new Random();
-        
-        int minimo = Integer.parseInt(min);
-        int maximo= Integer.parseInt(max);
-        
-        int randomDia = numRandom.nextInt(maximo - minimo + 1) + 1;
-        int randomTicket = numRandom.nextInt(9999 - 0001 + 1);
-        
-        String numeroSorteado = randomDia + mes + randomTicket;
-        
-        
-        //Controlar que no haya salido antes el número
-        
-        DefaultTableModel model = (DefaultTableModel) tblGanadores.getModel();
-        Object[] object = {1, numeroSorteado};
-        model.addRow(object);
-        
-        
-        //Agregar el ganador a la tabla
-        
+        }else{
+            JOptionPane.showMessageDialog(rootPane, "Ese necesario completar la cantidad de GANADORES");
+        }
         
     }//GEN-LAST:event_btnSortearActionPerformed
 
-    
+    public String agregarCeros(int randomDia, String mes, int randomTicket){
+        
+       int largoString = (Integer.toString(randomDia)).length();
+        
+        
+        //agregar los 0 al dia
+        String numeroSorteado;
+        
+        if(largoString == 2){
+           numeroSorteado = randomDia + mes + randomTicket;
+        } else{
+            numeroSorteado = "0" + randomDia + mes + randomTicket;
+        }
+        
+        // agregar los 0 al ticket
+        
+        largoString = (Integer.toString(randomTicket)).length();
+        
+        if (largoString == 3) {
+            numeroSorteado = numeroSorteado + "0" + randomTicket;
+        } else {
+            if (largoString == 2) {
+                numeroSorteado = numeroSorteado + "00" + randomTicket;
+            } else {
+                if (largoString == 1) {
+                    numeroSorteado = numeroSorteado + "000" + randomTicket;
+                } else {
+                    numeroSorteado = numeroSorteado + randomTicket;
+                }
+            }  // ← faltaba esta
+        }      // ← faltaba esta
+        
+        
+      return numeroSorteado;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLimpiar;
