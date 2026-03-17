@@ -234,7 +234,23 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_cmbMesActionPerformed
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
-        // TODO add your handling code here:
+        txtCantGanadores.setText("");
+        cmbMes.setSelectedIndex(0);
+        
+        
+        //opcion1
+//        DefaultTableModel modelo = (DefaultTableModel)tblGanadores.getModel();
+//        
+//        for(int i = modelo.getRowCount() - 1; i>=0; i-- ){
+//            modelo.removeRow(i);
+//        }
+
+        //opcion2
+        DefaultTableModel modelo = (DefaultTableModel)tblGanadores.getModel();
+        modelo.setRowCount(0);
+        
+        
+        contSorteos = 1;
     }//GEN-LAST:event_btnLimpiarActionPerformed
 
     private void txtCantGanadoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCantGanadoresActionPerformed
